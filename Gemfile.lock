@@ -7,6 +7,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     fssm (0.2.9)
+    railsless-deploy (1.0.2)
     sass (3.2.3)
 
 PLATFORMS
@@ -14,3 +15,4 @@ PLATFORMS
 
 DEPENDENCIES
   compass (~> 0.12.2)
+  railsless-deploy
