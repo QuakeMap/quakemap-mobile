@@ -1,0 +1,10 @@
+<div class="quake-top">
+  <div class='quake-mag' style="color:<%= model.color() %>">
+    <%= model.formattedMagnitude() %>
+  </div>
+  <div class='quake-info'>
+    <p><%= model.formattedTime() %></p>
+    <p>Depth: <%= model.formattedDepth() %> km</p>
+  </div>
+</div>
+<div class="quake-map"></div>

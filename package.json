@@ -1,0 +1,18 @@
+{
+  "author": "",
+  "name": "quakemap-mobile",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.6.11"
+  },
+  "dependencies": {
+    "grunt-contrib":"*",
+    "grunt-contrib-coffee": "~0.3.0",
+    "grunt-compass": "~0.3.0"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
