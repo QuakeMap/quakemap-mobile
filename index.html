@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="utf-8">
-
+  <!-- Want to contribute to QuakeMap Mobile? Fork this project on Github: https://github.com/QuakeMap/quakemap-mobile -->
   <title>QuakeMap NZ</title>
   <meta name="description" content="">
 
@@ -49,11 +49,17 @@
     <h1>QuakeMap NZ</h1>
   </header>
 
-  <div id="main" role="main">
-  </div>
+  <section id="list" role="main"></section>
+  <section id="map"></section>
 
+  <nav>
+    <ul>
+      <li class="list"><i></i> List</li>
+      <li class="map"><i></i> Map</li>
+    </ul>
+  </nav>
 
-
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
   <script type="text/javascript" src="./js/libs.js"></script>
   <script type="text/javascript" src="./js/templates.js"></script>
   <script type="text/javascript" src="./js/app.js"></script>

@@ -10,20 +10,146 @@
   QuakeMap.App.addInitializer(function(options) {
     var _this = this;
     this.quakes = new QuakeMap.Collections.Quakes();
-    this.list = new QuakeMap.Views.Quakes({
+    this.list = new QuakeMap.Views.Index({
       collection: this.quakes
     });
-    this.list.render().$el.appendTo("#main");
-    return this.quakes.fetch({
+    this.list.render().$el.appendTo("#list");
+    this.quakes.fetch({
       success: function() {
         return window.scrollTo(0, 0);
       }
     });
+    return this.showList();
   });
 
+  QuakeMap.App.showList = function() {
+    $("section").hide();
+    $("#list").show();
+    $("nav li").removeClass("selected");
+    return $("nav li.list").addClass("selected");
+  };
+
+  QuakeMap.App.setupMap = function() {
+    var greyMapType;
+    this.map = new google.maps.Map(document.getElementById("map"), GMap.options);
+    greyMapType = new google.maps.StyledMapType(GMap.custom_style, {
+      name: "Map"
+    });
+    this.map.mapTypes.set('greymap', greyMapType);
+    return this.map.setMapTypeId('greymap');
+  };
+
+  QuakeMap.App.showMap = function() {
+    $("section").hide();
+    $("#map").show();
+    $("nav li").removeClass("selected");
+    $("nav li.map").addClass("selected");
+    if (this.map == null) {
+      this.setupMap();
+    }
+    return google.maps.event.trigger(this.map, 'resize');
+  };
+
   $(document).ready(function() {
+    if (typeof console !== "undefined" && console !== null) {
+      console.log("Want to contribute to QuakeMap Mobile? Fork this project on Github: https://github.com/QuakeMap/quakemap-mobile");
+    }
+    $("nav li.list").click(function() {
+      return QuakeMap.App.showList();
+    });
+    $("nav li.map").click(function() {
+      return QuakeMap.App.showMap();
+    });
     return QuakeMap.App.start();
   });
+
+}).call(this);
+
+(function() {
+
+  window.GMap = {
+    options: {
+      zoom: 4,
+      center: new google.maps.LatLng(-41, 174),
+      mapTypeId: 'greymap',
+      mapTypeControlOptions: {
+        mapTypeIds: ["greymap", google.maps.MapTypeId.HYBRID, google.maps.MapTypeId.TERRAIN]
+      },
+      navigationControl: false,
+      streetViewControl: false
+    },
+    custom_style: [
+      {
+        featureType: "landscape",
+        elementType: "all",
+        stylers: [
+          {
+            lightness: -100
+          }, {
+            saturation: -100
+          }
+        ]
+      }, {
+        featureType: "water",
+        elementType: "all",
+        stylers: [
+          {
+            saturation: -100
+          }, {
+            lightness: -40
+          }
+        ]
+      }, {
+        featureType: "poi",
+        elementType: "all",
+        stylers: [
+          {
+            visibility: "off"
+          }
+        ]
+      }, {
+        featureType: "administrative",
+        elementType: "all",
+        stylers: [
+          {
+            visibility: "off"
+          }
+        ]
+      }, {
+        featureType: "road",
+        elementType: "labels",
+        stylers: [
+          {
+            visibility: "off"
+          }
+        ]
+      }, {
+        featureType: "road",
+        elementType: "all",
+        stylers: [
+          {
+            saturation: -100
+          }
+        ]
+      }, {
+        featureType: "administrative.locality",
+        elementType: "labels",
+        stylers: [
+          {
+            visibility: "on"
+          }
+        ]
+      }, {
+        featureType: "all",
+        elementType: "all",
+        stylers: [
+          {
+            lightness: 40
+          }
+        ]
+      }
+    ]
+  };
 
 }).call(this);
 
@@ -101,52 +227,58 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  QuakeMap.Views.Quake = (function(_super) {
+  QuakeMap.Views.QuakeItem = (function(_super) {
 
-    __extends(Quake, _super);
+    __extends(QuakeItem, _super);
 
-    function Quake() {
-      return Quake.__super__.constructor.apply(this, arguments);
+    function QuakeItem() {
+      return QuakeItem.__super__.constructor.apply(this, arguments);
     }
 
-    Quake.prototype.tagName = "li";
+    QuakeItem.prototype.tagName = "li";
 
-    Quake.prototype.template = _.template("<div class='quake-mag' style=\"color:<%= model.color() %>\">\n  <%= model.formattedMagnitude() %>\n</div>\n<div class='quake-info'>\n  <p><%= model.formattedTime() %></p>\n  <p>Depth: <%= model.formattedDepth() %> km</p>\n</div>");
+    QuakeItem.prototype.template = JST["item.ejs"];
 
-    Quake.prototype.events = {
+    QuakeItem.prototype.events = {
       "click": "select"
     };
 
-    Quake.prototype.render = function() {
+    QuakeItem.prototype.render = function() {
       return $(this.el).html(this.template({
         model: this.model
       }));
     };
 
-    Quake.prototype.select = function() {
+    QuakeItem.prototype.select = function() {
       return typeof console !== "undefined" && console !== null ? console.log(this.model) : void 0;
     };
 
-    return Quake;
+    return QuakeItem;
 
   })(Backbone.Marionette.ItemView);
 
-  QuakeMap.Views.Quakes = (function(_super) {
+  QuakeMap.Views.Index = (function(_super) {
 
-    __extends(Quakes, _super);
+    __extends(Index, _super);
 
-    function Quakes() {
-      return Quakes.__super__.constructor.apply(this, arguments);
+    function Index() {
+      return Index.__super__.constructor.apply(this, arguments);
     }
 
-    Quakes.prototype.itemView = QuakeMap.Views.Quake;
+    Index.prototype.itemView = QuakeMap.Views.QuakeItem;
 
-    Quakes.prototype.tagName = "ul";
+    Index.prototype.tagName = "ul";
 
-    Quakes.prototype.className = "quake-list";
+    Index.prototype.className = "quake-list";
 
-    return Quakes;
+    return Index;
 
   })(Backbone.Marionette.CollectionView);
+
+}).call(this);
+
+(function() {
+
+
 
 }).call(this);

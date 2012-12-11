@@ -67,35 +67,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 8, ../src/scss/screen.scss */
+/* line 15, ../src/scss/screen.scss */
 body {
   -webkit-text-size-adjust: 100%;
   background: #1C1C1F;
   color: #fefefe;
-  padding-top: 40px;
+  padding: 40px 0;
+  font-family: Arial, san-serif;
 }
 
-/* line 15, ../src/scss/screen.scss */
+/* line 23, ../src/scss/screen.scss */
 a {
   color: #FFC;
 }
 
-/* line 19, ../src/scss/screen.scss */
-header {
+/* line 27, ../src/scss/screen.scss */
+header, nav {
   position: fixed;
   left: 0;
   right: 0;
-  top: 0;
-  z-index: 1000;
   height: 40px;
-  width: 100%;
-  background: #17181A;
-  border-bottom: solid 1px black;
   -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
   -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px;
 }
-/* line 30, ../src/scss/screen.scss */
+
+/* line 35, ../src/scss/screen.scss */
+header {
+  top: 0;
+  z-index: 1000;
+  border-bottom: solid 1px black;
+  background-color: #17181a;
+}
+/* line 40, ../src/scss/screen.scss */
 header h1 {
   width: 120px;
   height: 25px;
@@ -105,20 +109,90 @@ header h1 {
   background-size: 120px 25px;
 }
 
-/* line 41, ../src/scss/screen.scss */
-ul.quake-list li {
+/* line 49, ../src/scss/screen.scss */
+section {
+  display: none;
+}
+
+/* line 53, ../src/scss/screen.scss */
+nav {
+  bottom: 0;
+  border-top: solid 1px black;
+  background-color: #222222;
+}
+/* line 57, ../src/scss/screen.scss */
+nav ul {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  box-orient: horizontal;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -ms-box-align: stretch;
+  box-align: stretch;
+}
+/* line 61, ../src/scss/screen.scss */
+nav ul li {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  color: #aaa;
+}
+/* line 67, ../src/scss/screen.scss */
+nav ul li.selected {
+  color: #fff;
+  text-shadow: rgba(238, 238, 238, 0.5) 0 0 5px;
   background-color: #17181a;
-  border-top: solid 1px #222;
-  border-bottom: solid 1px #000;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 10, color-stop(0%, rgba(17, 17, 17, 0.5)), color-stop(100%, rgba(17, 17, 17, 0)));
+  background-image: -webkit-linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
+  background-image: -moz-linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
+  background-image: -o-linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
+  background-image: linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
+}
+/* line 72, ../src/scss/screen.scss */
+nav ul li.selected i {
+  background-color: #fff;
+}
+/* line 76, ../src/scss/screen.scss */
+nav ul li i {
+  display: inline-block;
+  background-color: #aaa;
+  width: 12px;
+  height: 12px;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-position: 0 0;
+}
+/* line 84, ../src/scss/screen.scss */
+nav ul li.list i {
+  -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wMCwYhI5GsBNcAAABFSURBVEjH7ZIxCgAwCMRi//9YfYFdLJSuldLhAuJxgzgEHuBA1j6723GrsLDa2fX9AKJybH003Q+ELJJFskgWySJZ9AUTyHVt0ZiXtTsAAAAASUVORK5CYII=');
+}
+/* line 87, ../src/scss/screen.scss */
+nav ul li.map i {
+  -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wMCwYgGU677CQAAAE5SURBVEjHtZW9SkNBEIXP501EsLEIglftVBAbEWzF1sIq4AOkF5E0VnmCYGNpIdj6AKKN+ABamE4bIYVYCYqEYLxjM8Jio3jnbjO77HK+M7N/mf7YgHEgB+qSBqqqAYfAhvf5bX32D8BQ0hXwYGa9UACAmT0CuaQl4ELSqKpSXQNrwHRoiRLAnKSOpBdJt1VksAoYcA40gDrQjgQ0HWBAAQyA55/raiUYTY8mCUkTkvbKusbjqbv+9AzugXVgKrJEu8DQAZdRoovp7QXuHLAZBTDf3A6w5eMjnxsrK76TnJieH81uhOuaxyIBdKMv1X4C6EeJZh7bLjxySB7p/DgpSwGcAPMRwpPAW+LcgJVI5zeJ6w/gNVK8lTwD3xt7EAl4Stwb8A40IgGzwDJwBvSBmSo+k21gIULrC7SFUW39z2QfAAAAAElFTkSuQmCC');
+}
+
+/* line 94, ../src/scss/screen.scss */
+#list ul li {
+  background-color: #17181a;
+  border-top: solid 1px #222222;
+  border-bottom: solid 1px black;
   min-height: 40px;
   padding: 0 5px;
 }
-/* line 47, ../src/scss/screen.scss */
-ul.quake-list li:nth-child(odd) {
+/* line 100, ../src/scss/screen.scss */
+#list ul li:nth-child(odd) {
   background-color: #1c1c1f;
 }
-/* line 50, ../src/scss/screen.scss */
-ul.quake-list li .quake-mag {
+/* line 103, ../src/scss/screen.scss */
+#list ul li .quake-mag {
   float: left;
   font-family: Arial,san-serif;
   font-size: 30px;
@@ -127,15 +201,24 @@ ul.quake-list li .quake-mag {
   margin-right: 10px;
   text-shadow: 0px 0px 3px #222;
 }
-/* line 59, ../src/scss/screen.scss */
-ul.quake-list li .quake-info {
+/* line 112, ../src/scss/screen.scss */
+#list ul li .quake-info {
   padding: 5px 0;
   font-family: "Times New Roman", serif;
   color: #fff;
   font-size: 9pt;
   font-style: italic;
 }
-/* line 65, ../src/scss/screen.scss */
-ul.quake-list li .quake-info p {
+/* line 118, ../src/scss/screen.scss */
+#list ul li .quake-info p {
   line-height: 15px;
+}
+
+/* line 125, ../src/scss/screen.scss */
+#map {
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 0;
+  right: 0;
 }

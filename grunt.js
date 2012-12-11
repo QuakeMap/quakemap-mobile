@@ -5,14 +5,14 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     watch: [{
-      files: ['src/coffee/templates/**/*.coffee'],
-      tasks: 'coffee'
+      files: ['src/coffee/templates/**/*.ejs'],
+      tasks: 'jst'
     },{
       files:["src/scss/**/*.scss"],
       tasks: 'compass:dev'
     },{
-      files:["src/coffee/**/*.ejs"],
-      tasks: 'jst'
+      files:["src/coffee/**/*.coffee"],
+      tasks: 'coffee'
     }],
     coffee: {
       compile: {
