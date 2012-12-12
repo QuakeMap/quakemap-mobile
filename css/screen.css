@@ -109,18 +109,13 @@ header h1 {
   background-size: 120px 25px;
 }
 
-/* line 49, ../src/scss/screen.scss */
-section {
-  display: none;
-}
-
-/* line 53, ../src/scss/screen.scss */
+/* line 50, ../src/scss/screen.scss */
 nav {
   bottom: 0;
   border-top: solid 1px black;
   background-color: #222222;
 }
-/* line 57, ../src/scss/screen.scss */
+/* line 54, ../src/scss/screen.scss */
 nav ul {
   display: -webkit-box;
   display: -moz-box;
@@ -135,7 +130,7 @@ nav ul {
   -ms-box-align: stretch;
   box-align: stretch;
 }
-/* line 61, ../src/scss/screen.scss */
+/* line 58, ../src/scss/screen.scss */
 nav ul li {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
@@ -146,7 +141,7 @@ nav ul li {
   font-size: 16px;
   color: #aaa;
 }
-/* line 67, ../src/scss/screen.scss */
+/* line 64, ../src/scss/screen.scss */
 nav ul li.selected {
   color: #fff;
   text-shadow: rgba(238, 238, 238, 0.5) 0 0 5px;
@@ -157,11 +152,11 @@ nav ul li.selected {
   background-image: -o-linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
   background-image: linear-gradient(top, rgba(17, 17, 17, 0.5), rgba(17, 17, 17, 0) 10px);
 }
-/* line 72, ../src/scss/screen.scss */
+/* line 69, ../src/scss/screen.scss */
 nav ul li.selected i {
   background-color: #fff;
 }
-/* line 76, ../src/scss/screen.scss */
+/* line 73, ../src/scss/screen.scss */
 nav ul li i {
   display: inline-block;
   background-color: #aaa;
@@ -170,16 +165,16 @@ nav ul li i {
   -webkit-mask-size: 100% 100%;
   -webkit-mask-position: 0 0;
 }
-/* line 84, ../src/scss/screen.scss */
+/* line 81, ../src/scss/screen.scss */
 nav ul li.list i {
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wMCwYhI5GsBNcAAABFSURBVEjH7ZIxCgAwCMRi//9YfYFdLJSuldLhAuJxgzgEHuBA1j6723GrsLDa2fX9AKJybH003Q+ELJJFskgWySJZ9AUTyHVt0ZiXtTsAAAAASUVORK5CYII=');
 }
-/* line 87, ../src/scss/screen.scss */
+/* line 84, ../src/scss/screen.scss */
 nav ul li.map i {
   -webkit-mask-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9wMCwYgGU677CQAAAE5SURBVEjHtZW9SkNBEIXP501EsLEIglftVBAbEWzF1sIq4AOkF5E0VnmCYGNpIdj6AKKN+ABamE4bIYVYCYqEYLxjM8Jio3jnbjO77HK+M7N/mf7YgHEgB+qSBqqqAYfAhvf5bX32D8BQ0hXwYGa9UACAmT0CuaQl4ELSqKpSXQNrwHRoiRLAnKSOpBdJt1VksAoYcA40gDrQjgQ0HWBAAQyA55/raiUYTY8mCUkTkvbKusbjqbv+9AzugXVgKrJEu8DQAZdRoovp7QXuHLAZBTDf3A6w5eMjnxsrK76TnJieH81uhOuaxyIBdKMv1X4C6EeJZh7bLjxySB7p/DgpSwGcAPMRwpPAW+LcgJVI5zeJ6w/gNVK8lTwD3xt7EAl4Stwb8A40IgGzwDJwBvSBmSo+k21gIULrC7SFUW39z2QfAAAAAElFTkSuQmCC');
 }
 
-/* line 94, ../src/scss/screen.scss */
+/* line 91, ../src/scss/screen.scss */
 #list ul li {
   background-color: #17181a;
   border-top: solid 1px #222222;
@@ -187,11 +182,11 @@ nav ul li.map i {
   min-height: 40px;
   padding: 0 5px;
 }
-/* line 100, ../src/scss/screen.scss */
+/* line 97, ../src/scss/screen.scss */
 #list ul li:nth-child(odd) {
   background-color: #1c1c1f;
 }
-/* line 103, ../src/scss/screen.scss */
+/* line 100, ../src/scss/screen.scss */
 #list ul li .quake-mag {
   float: left;
   font-family: Arial,san-serif;
@@ -201,7 +196,7 @@ nav ul li.map i {
   margin-right: 10px;
   text-shadow: 0px 0px 3px #222;
 }
-/* line 112, ../src/scss/screen.scss */
+/* line 109, ../src/scss/screen.scss */
 #list ul li .quake-info {
   padding: 5px 0;
   font-family: "Times New Roman", serif;
@@ -209,12 +204,12 @@ nav ul li.map i {
   font-size: 9pt;
   font-style: italic;
 }
-/* line 118, ../src/scss/screen.scss */
+/* line 115, ../src/scss/screen.scss */
 #list ul li .quake-info p {
   line-height: 15px;
 }
 
-/* line 125, ../src/scss/screen.scss */
+/* line 122, ../src/scss/screen.scss */
 #map {
   position: absolute;
   top: 40px;

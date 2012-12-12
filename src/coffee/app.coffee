@@ -13,20 +13,25 @@ QuakeMap.App.addInitializer (options)->
       window.scrollTo(0,0)
   @showList()
 
-QuakeMap.App.showList = ->
-  $("section").hide()
-  $("#list").show()
-  $("nav li").removeClass "selected"
-  $("nav li.list").addClass "selected"
-
 QuakeMap.App.setupMap = ->
   @map = new google.maps.Map document.getElementById("map"), GMap.options
   greyMapType = new google.maps.StyledMapType(GMap.custom_style, {name: "Map"});
   @map.mapTypes.set('greymap', greyMapType);
   @map.setMapTypeId('greymap');
+  google.maps.event.addListenerOnce @map, "tilesloaded", =>
+    @quakes.forEach (quake)=>
+      quake.addMarker()
+
+QuakeMap.App.showList = ->
+  $("#map").hide()
+  $("#list").show()
+  $("nav li").removeClass "selected"
+  $("nav li.list").addClass "selected"
+
+
 
 QuakeMap.App.showMap = ->
-  $("section").hide()
+  $("#list").hide()
   $("#map").show()
   $("nav li").removeClass "selected"
   $("nav li.map").addClass "selected"

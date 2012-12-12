@@ -22,25 +22,31 @@
     return this.showList();
   });
 
-  QuakeMap.App.showList = function() {
-    $("section").hide();
-    $("#list").show();
-    $("nav li").removeClass("selected");
-    return $("nav li.list").addClass("selected");
-  };
-
   QuakeMap.App.setupMap = function() {
-    var greyMapType;
+    var greyMapType,
+      _this = this;
     this.map = new google.maps.Map(document.getElementById("map"), GMap.options);
     greyMapType = new google.maps.StyledMapType(GMap.custom_style, {
       name: "Map"
     });
     this.map.mapTypes.set('greymap', greyMapType);
-    return this.map.setMapTypeId('greymap');
+    this.map.setMapTypeId('greymap');
+    return google.maps.event.addListenerOnce(this.map, "tilesloaded", function() {
+      return _this.quakes.forEach(function(quake) {
+        return quake.addMarker();
+      });
+    });
+  };
+
+  QuakeMap.App.showList = function() {
+    $("#map").hide();
+    $("#list").show();
+    $("nav li").removeClass("selected");
+    return $("nav li.list").addClass("selected");
   };
 
   QuakeMap.App.showMap = function() {
-    $("section").hide();
+    $("#list").hide();
     $("#map").show();
     $("nav li").removeClass("selected");
     $("nav li.map").addClass("selected");
@@ -169,6 +175,16 @@
       return this.collection.magColorScale(this.get("magnitude"));
     };
 
+    Quake.prototype.radius = function() {
+      return this.collection.magSizeScale(Math.pow(10, this.get("magnitude")));
+    };
+
+    Quake.prototype.position = function() {
+      var coords;
+      coords = this.get("coordinates");
+      return new google.maps.LatLng(coords.lat, coords.lng);
+    };
+
     Quake.prototype.formattedTime = function() {
       var formatter, parser;
       parser = d3.time.format.iso;
@@ -186,6 +202,27 @@
       var formatter;
       formatter = d3.format(".1f");
       return formatter(this.get("depth"));
+    };
+
+    Quake.prototype.addMarker = function() {
+      return this.marker = new google.maps.Marker({
+        position: this.position(),
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: this.radius(),
+          fillColor: this.color(),
+          fillOpacity: 0.5,
+          strokeColor: this.color(),
+          strokeOpacity: 1,
+          strokeWeight: 2
+        },
+        map: QuakeMap.App.map
+      });
+    };
+
+    Quake.prototype.removeMarker = function() {
+      var _ref;
+      return (_ref = this.marker) != null ? _ref.setMap(null) : void 0;
     };
 
     return Quake;
@@ -213,7 +250,8 @@
     Quakes.prototype.initialize = function() {
       var _this = this;
       return this.on("reset", function() {
-        return _this.magColorScale = d3.scale.linear().range(["#FFd42a", "#800026"]).domain([_this.mag_floor, _this.mag_ceil]).nice();
+        _this.magColorScale = d3.scale.linear().range(["#FFd42a", "#800026"]).domain([_this.mag_floor, _this.mag_ceil]).nice();
+        return _this.magSizeScale = d3.scale.linear().range([3, 30]).domain([Math.pow(10, _this.mag_floor), Math.pow(10, _this.mag_ceil)]).nice();
       });
     };
 
