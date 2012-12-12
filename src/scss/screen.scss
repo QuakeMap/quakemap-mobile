@@ -6,6 +6,7 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/box";
 @import "compass/css3/images";
+@import "compass/css3/transform";
 
 $darkGrey: #17181A;
 $lightGrey: #1c1c1f;
@@ -44,6 +45,20 @@ header{
     text-indent: -10000px;
     background: image-url('quakemap_nz.png') center no-repeat;
     background-size: 120px 25px;
+  }
+  .beta{
+    background:green;
+    font-size: 10px;
+    text-align: center;
+    color: white;
+    width:56px;
+    height: 15px;
+    line-height: 15px;
+    position: absolute;
+    top: 7px;
+    right: -14px;
+    @include rotate(45deg);
+    @include box-shadow(rgba(black,0.5) 0 0 5px);
   }
 }
 
