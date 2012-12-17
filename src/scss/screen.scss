@@ -62,6 +62,14 @@ header{
   }
 }
 
+$icons: sprite-map("icons/*.png");
+
+@mixin scaled-sprite-position($map, $name){
+  $xpos: round(nth(sprite-position($map, $name), 1) / 2);
+  $ypos: round(nth(sprite-position($map, $name), 2) / 2);
+  background-position: $xpos $ypos;
+}
+
 nav{
   bottom: 0;
   border-top: solid 1px black;
@@ -81,23 +89,26 @@ nav{
         text-shadow: rgba(#eee,0.5) 0 0 5px;
         background-color: $darkGrey;
         @include background-image(linear-gradient(top, rgba(#111,0.5), rgba(#111,0) 10px));
-        i{
-          background-color: #fff;
+        &.list i{
+          @include scaled-sprite-position($icons, "list-white");
+        }
+        &.map i{
+          @include scaled-sprite-position($icons, "map-white");
         }
       }
       i{
         display: inline-block;
-        background-color: #aaa;
         width: 12px;
         height: 12px;
-        -webkit-mask-size: 100% 100%;
-        -webkit-mask-position: 0 0;
+        background: sprite-url($icons);
+        background-size: 12px 48px;
+
       }
       &.list i{
-        -webkit-mask-image: inline-image("icons/list.png");
+        @include scaled-sprite-position($icons, "list-grey");
       }
       &.map i{
-        -webkit-mask-image: inline-image("icons/map.png");
+        @include scaled-sprite-position($icons, "map-grey");
       }
     }
   }
